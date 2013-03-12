@@ -969,7 +969,7 @@ static NSSize scaledIconSizeForSize(NSSize imageSize)
    * initialization code behaves always in the same way for this class
    * and for subclasses.
    */
-  NSAssert (NSApp == nil, _(@"[NSApplication -init] called more than once"));
+  NSAssert1 (NSApp == nil, @"%@", _(@"[NSApplication -init] called more than once"));
 
   /*
    * The appkit should run in the main thread ... so to be sure we perform
@@ -2168,7 +2168,7 @@ See -runModalForWindow:
 
   if (event)
     {
-IF_NO_GC(NSAssert([event retainCount] > 0, NSInternalInconsistencyException));
+IF_NO_GC(NSAssert1([event retainCount] > 0, @"%@", NSInternalInconsistencyException));
       /*
        * If we are not in a tracking loop, we may want to unhide a hidden
        * because the mouse has been moved.

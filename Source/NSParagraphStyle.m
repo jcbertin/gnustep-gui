@@ -615,13 +615,13 @@ static NSParagraphStyle	*defaultStyle = nil;
 
 - (void) setLineSpacing: (CGFloat)aFloat
 {
-  NSAssert (aFloat >= 0.0, NSInvalidArgumentException);
+  NSAssert1 (aFloat >= 0.0, @"%@", NSInvalidArgumentException);
   _lineSpacing = aFloat;
 }
 
 - (void) setParagraphSpacing: (CGFloat)aFloat
 {
-  NSAssert (aFloat >= 0.0, NSInvalidArgumentException);
+  NSAssert1 (aFloat >= 0.0, @"%@", NSInvalidArgumentException);
   _paragraphSpacing = aFloat;
 }
 
@@ -632,13 +632,13 @@ static NSParagraphStyle	*defaultStyle = nil;
 
 - (void) setFirstLineHeadIndent: (CGFloat)aFloat
 {
-  NSAssert (aFloat >= 0.0, NSInvalidArgumentException);
+  NSAssert1 (aFloat >= 0.0, @"%@", NSInvalidArgumentException);
   _firstLineHeadIndent = aFloat;
 }
 
 - (void) setHeadIndent: (CGFloat)aFloat
 {
-  NSAssert (aFloat >= 0.0, NSInvalidArgumentException);
+  NSAssert1 (aFloat >= 0.0, @"%@", NSInvalidArgumentException);
   _headIndent = aFloat;
 }
 
@@ -654,13 +654,13 @@ static NSParagraphStyle	*defaultStyle = nil;
 
 - (void) setMinimumLineHeight: (CGFloat)aFloat
 {
-  NSAssert (aFloat >= 0.0, NSInvalidArgumentException);
+  NSAssert1 (aFloat >= 0.0, @"%@", NSInvalidArgumentException);
   _minimumLineHeight = aFloat;
 }
 
 - (void) setMaximumLineHeight: (CGFloat)aFloat
 {
-  NSAssert (aFloat >= 0.0, NSInvalidArgumentException);
+  NSAssert1 (aFloat >= 0.0, @"%@", NSInvalidArgumentException);
   _maximumLineHeight = aFloat;
 }
 

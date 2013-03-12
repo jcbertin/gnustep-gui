@@ -823,7 +823,7 @@ static void setNSFont(NSString *key, NSFont *font)
   NSFont *font;
 
   /* Should never be called on an initialised font! */
-  NSAssert(fontName == nil, NSInternalInconsistencyException);
+  NSAssert1(fontName == nil, @"%@", NSInternalInconsistencyException);
 
   /* Check whether the font is cached */
   key = keyForFont(name, fontMatrix,

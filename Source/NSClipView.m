@@ -800,8 +800,8 @@ static inline NSRect integralRect (NSRect rect, NSView *view)
           NSRect rect;
 	  id document = [aDecoder decodeObjectForKey: @"NSDocView"];
 
-	  NSAssert([document class] != [NSCustomView class],
-		   NSInvalidArgumentException);
+	  NSAssert1([document class] != [NSCustomView class],
+		   @"%@", NSInvalidArgumentException);
 	  rect = [document frame];
 	  rect.origin = NSZeroPoint;
 	  [document setFrame: rect];

@@ -624,8 +624,8 @@ typedef	struct {
 {
   NSColor	*c = nil;
 
-  NSAssert(elementState <= GSThemeSelectedState, NSInvalidArgumentException);
-  NSAssert(elementState >= 0, NSInvalidArgumentException);
+  NSAssert1(elementState <= GSThemeSelectedState, @"%@", NSInvalidArgumentException);
+  NSAssert1(elementState >= 0, @"%@", NSInvalidArgumentException);
 
   if (aName != nil)
     {
@@ -1095,8 +1095,8 @@ typedef	struct {
   GSDrawTiles		*tiles;
   NSMutableDictionary	*cache;
 
-  NSAssert(elementState <= GSThemeSelectedState, NSInvalidArgumentException);
-  NSAssert(elementState >= 0, NSInvalidArgumentException);
+  NSAssert1(elementState <= GSThemeSelectedState, @"%@", NSInvalidArgumentException);
+  NSAssert1(elementState >= 0, @"%@", NSInvalidArgumentException);
   if (aName == nil)
     {
       return nil;

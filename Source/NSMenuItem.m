@@ -365,8 +365,8 @@ static Class imageClass;
 
 - (void) setImage: (NSImage *)image
 {
-  NSAssert(image == nil || [image isKindOfClass: imageClass],
-    NSInvalidArgumentException);
+  NSAssert1(image == nil || [image isKindOfClass: imageClass],
+    @"%@", NSInvalidArgumentException);
 	
   if (_image == image)
     return; // no change
@@ -397,8 +397,8 @@ static Class imageClass;
 
 - (void) setOnStateImage: (NSImage*)image
 {
-  NSAssert(image == nil || [image isKindOfClass: imageClass],
-    NSInvalidArgumentException);
+  NSAssert1(image == nil || [image isKindOfClass: imageClass],
+    @"%@", NSInvalidArgumentException);
 	
   if (_onStateImage == image)
     return; // no change
@@ -414,8 +414,8 @@ static Class imageClass;
 
 - (void) setOffStateImage: (NSImage*)image
 {
-  NSAssert(image == nil || [image isKindOfClass: imageClass],
-    NSInvalidArgumentException);
+  NSAssert1(image == nil || [image isKindOfClass: imageClass],
+    @"%@", NSInvalidArgumentException);
 	
   if (_offStateImage == image)
     return; // no change
@@ -431,8 +431,8 @@ static Class imageClass;
 
 - (void) setMixedStateImage: (NSImage*)image
 {
-  NSAssert(image == nil || [image isKindOfClass: imageClass],
-    NSInvalidArgumentException);
+  NSAssert1(image == nil || [image isKindOfClass: imageClass],
+    @"%@", NSInvalidArgumentException);
 	
   if (_mixedStateImage == image)
     return; // no change

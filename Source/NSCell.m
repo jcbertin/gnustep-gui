@@ -1205,8 +1205,8 @@ static NSColor *dtxtCol;
 {
   if (anImage) 
     {
-      NSAssert ([anImage isKindOfClass: imageClass],
-                NSInvalidArgumentException);
+      NSAssert1 ([anImage isKindOfClass: imageClass],
+                @"%@", NSInvalidArgumentException);
     }
   
   if (_cell.type != NSImageCellType)

@@ -1834,7 +1834,7 @@ systemColorWithName(NSString *name)
     {
       list = defaultSystemColors;
     }
-  NSAssert([[list name] isEqual: @"System"], NSInvalidArgumentException);
+  NSAssert1([[list name] isEqual: @"System"], @"%@", NSInvalidArgumentException);
   [NSColorList _setThemeSystemColorList: list];
 
   /* We always update the system dictionary and send a notification, since

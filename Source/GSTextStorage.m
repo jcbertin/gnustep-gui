@@ -428,7 +428,7 @@ _attributesAtIndexEffectiveRange(
   GSTextInfo	*found = nil;
 
   used = (*cntImp)(_infoArray, cntSel);
-  NSCAssert(used > 0, NSInternalInconsistencyException);
+  NSCAssert1(used > 0, @"%@", NSInternalInconsistencyException);
   high = used - 1;
 
   if (index >= tmpLength)
@@ -519,14 +519,14 @@ _attributesAtIndexEffectiveRange(
   unsigned	len = [_textChars length];
   unsigned	c = (*cntImp)(_infoArray, cntSel);
 
-  NSAssert(c > 0, NSInternalInconsistencyException);
+  NSAssert1(c > 0, @"%@", NSInternalInconsistencyException);
   info = OBJECTAT(0);
-  NSAssert(info->loc == 0, NSInternalInconsistencyException);
+  NSAssert1(info->loc == 0, @"%@", NSInternalInconsistencyException);
   for (i = 1; i < c; i++)
     {
       info = OBJECTAT(i);
-      NSAssert(info->loc > l, NSInternalInconsistencyException);
-      NSAssert(info->loc < len, NSInternalInconsistencyException);
+      NSAssert1(info->loc > l, @"%@", NSInternalInconsistencyException);
+      NSAssert1(info->loc < len, @"%@", NSInternalInconsistencyException);
       l = info->loc;
     }
 }
@@ -657,7 +657,7 @@ _attributesAtIndexEffectiveRange(
 
   if (range.length == 0)
     {
-      NSWarnMLog(@"Attempt to set attribute for zero-length range", 0);
+      NSWarnMLog(@"%@", @"Attempt to set attribute for zero-length range");
       return;
     }
   if (attributes == nil)

@@ -187,7 +187,7 @@ nsanimation_progressMarkSorter(NSAnimationProgress first, NSAnimationProgress se
 #define _NSANIMATION_LOCK           \
   if (_isThreaded)                  \
   {                                 \
-    NSAssert(__gs_isLocked == NO, NSInternalInconsistencyException); \
+    NSAssert1(__gs_isLocked == NO, @"%@", NSInternalInconsistencyException); \
     NSDebugMLLog(@"NSAnimationLock",\
                  @"LOCK %@", [NSThread currentThread]);\
     [_isAnimatingLock lock];        \
@@ -548,7 +548,7 @@ nsanimation_progressMarkSorter(NSAnimationProgress first, NSAnimationProgress se
       _isCachedProgressMarkNumbersValid = NO;
       if (_nextMark > index) _nextMark--;
       NSDebugMLLog(@"NSAnimationMark",@"Remove mark #%d for (next:#%d)",
-                   index, progress, _nextMark);
+                   index, _nextMark);
     }
   else
     NSWarnMLog(@"Unexistent progress mark");
@@ -797,7 +797,7 @@ nsanimation_progressMarkSorter(NSAnimationProgress first, NSAnimationProgress se
         [delegate methodForSelector: @selector (animationShouldStart:)]
         : NULL;
       NSDebugMLLog(@"NSAnimationDelegate",
-                   @"Delegation methods : %x %x %x %x %x",
+                   @"Delegation methods : %p %p %p %p %p",
                    _delegate_animationDidReachProgressMark,
                    _delegate_animationValueForProgress,
                    _delegate_animationDidEnd,

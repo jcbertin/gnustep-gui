@@ -682,7 +682,7 @@ static NSString	*namePrefix = @"NSTypedFilenamesPboardType:";
   NSString	*fromType = nil;
   NSString	*mechanism;
 
-  NSAssert(sender == self, NSInvalidArgumentException);
+  NSAssert1(sender == self, @"%@", NSInvalidArgumentException);
 
   /*
    * If the requested type is the same as one of the original types,

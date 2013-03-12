@@ -206,8 +206,8 @@ NSRegisterServicesProvider(id provider, NSString *name)
 
 + (id) connectionBecameInvalid: (NSNotification*)notification
 {
-  NSAssert(listenerConnection==[notification object],
-	NSInternalInconsistencyException);
+  NSAssert1(listenerConnection==[notification object],
+	@"%@", NSInternalInconsistencyException);
 
   [[NSNotificationCenter defaultCenter]
     removeObserver: self

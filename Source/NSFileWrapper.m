@@ -438,7 +438,8 @@
   if (_wrapperType != GSFileWrapperDirectoryType) \
 	[NSException raise: NSInternalInconsistencyException \
 	            format: @"Can't invoke %@ on a file wrapper that" \
-                            @" does not wrap a directory!", _cmd];
+                        @" does not wrap a directory!", \
+                        NSStringFromSelector(_cmd)];
 
 - (NSString*) addFileWrapper: (NSFileWrapper*)doc			
 {

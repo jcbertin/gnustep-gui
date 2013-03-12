@@ -289,7 +289,7 @@ static Class eventClass;
   if ([dict objectForKey: timerKey])
     [NSException raise: NSInternalInconsistencyException
                 format: @"Periodic events are already being generated for "
-                        @"this thread %x", GSCurrentThread()];
+                        @"this thread %p", GSCurrentThread()];
 
   /*
    *  Register a timer that will fire in delaySeconds.
@@ -609,38 +609,37 @@ static const char *eventTypes[] = {
       case NSRightMouseDown:
       case NSRightMouseUp:
         return [NSString stringWithFormat:
-          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %u,"
-          @" time = %f, window = %d, dpsContext = %p,"
-          @" event number = %d, click = %d, pressure = %f",
+          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %lu,"
+          @" time = %f, window = %ld, dpsContext = %p,"
+          @" event number = %ld, click = %ld, pressure = %f",
           eventTypes[event_type], location_point.x, location_point.y,
-          modifier_flags, event_time, window_num, event_context,
-          event_data.mouse.event_num, event_data.mouse.click,
-          event_data.mouse.pressure];
+          (unsigned long)modifier_flags, event_time, (long)window_num,
+          event_context, (long)event_data.mouse.event_num,
+          (long)event_data.mouse.click, event_data.mouse.pressure];
         break;
 
       case NSMouseEntered:
       case NSMouseExited:
         return [NSString stringWithFormat:
-          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %u,"
-          @" time = %f, window = %d, dpsContext = %p, "
-          @" event number = %d, tracking number = %d, user data = %p",
+          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %lu,"
+          @" time = %f, window = %ld, dpsContext = %p, "
+          @" event number = %ld, tracking number = %ld, user data = %p",
           eventTypes[event_type], location_point.x, location_point.y,
-          modifier_flags, event_time, window_num, event_context,
-          event_data.tracking.event_num,
-          event_data.tracking.tracking_num,
-          event_data.tracking.user_data];
+          (unsigned long)modifier_flags, event_time, (long)window_num,
+          event_context, (long)event_data.tracking.event_num,
+          (long)event_data.tracking.tracking_num, event_data.tracking.user_data];
         break;
 
       case NSKeyDown:
       case NSKeyUp:
       case NSFlagsChanged:
         return [NSString stringWithFormat:
-          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %u,"
-          @" time = %f, window = %d, dpsContext = %p, "
+          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %lu,"
+          @" time = %f, window = %ld, dpsContext = %p, "
           @" repeat = %s, keys = %@, ukeys = %@, keyCode = 0x%x",
           eventTypes[event_type], location_point.x, location_point.y,
-          modifier_flags, event_time, window_num, event_context,
-          (event_data.key.repeat ? "YES" : "NO"),
+          (unsigned long)modifier_flags, event_time, (long)window_num,
+          event_context, (event_data.key.repeat ? "YES" : "NO"),
           event_data.key.char_keys, event_data.key.unmodified_keys,
           event_data.key.key_code];
         break;
@@ -651,13 +650,13 @@ static const char *eventTypes[] = {
       case NSSystemDefined:
       case NSApplicationDefined:
         return [NSString stringWithFormat:
-          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %u,"
-          @" time = %f, window = %d, dpsContext = %p, "
+          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %lu,"
+          @" time = %f, window = %ld, dpsContext = %p, "
           @" subtype = %d, data1 = %p, data2 = %p",
           eventTypes[event_type], location_point.x, location_point.y,
-          modifier_flags, event_time, window_num, event_context,
-          event_data.misc.sub_type, event_data.misc.data1,
-          event_data.misc.data2];
+          (unsigned long)modifier_flags, event_time, (long)window_num,
+          event_context, event_data.misc.sub_type,
+          (void *)event_data.misc.data1, (void *)event_data.misc.data2];
         break;
 
       case NSScrollWheel:
@@ -666,17 +665,16 @@ static const char *eventTypes[] = {
       case NSOtherMouseDragged:
       case NSRightMouseDragged:
         return [NSString stringWithFormat:
-          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %u,"
-          @" time = %f, window = %d, dpsContext = %p,"
-          @" event number = %d, click = %d, pressure = %f"
-          @" button = %d, deltaX = %f, deltaY = %f, deltaZ = %f",
+          @"NSEvent: eventType = %s, point = { %f, %f }, modifiers = %lu,"
+          @" time = %f, window = %ld, dpsContext = %p,"
+          @" event number = %ld, click = %ld, pressure = %f"
+          @" button = %ld, deltaX = %f, deltaY = %f, deltaZ = %f",
           eventTypes[event_type], location_point.x, location_point.y,
-          modifier_flags, event_time, window_num, event_context,
-          event_data.mouse.event_num, event_data.mouse.click,
-          event_data.mouse.pressure, event_data.mouse.button,
-          event_data.mouse.deltaX,
-          event_data.mouse.deltaY,
-          event_data.mouse.deltaZ];
+          (unsigned long)modifier_flags, event_time, (long)window_num,
+          event_context, (long)event_data.mouse.event_num,
+          (long)event_data.mouse.click, event_data.mouse.pressure,
+          (long)event_data.mouse.button, event_data.mouse.deltaX,
+          event_data.mouse.deltaY, event_data.mouse.deltaZ];
         break;
 
       // FIXME: Tablet events
@@ -686,10 +684,10 @@ static const char *eventTypes[] = {
 
       default:
         return [NSString stringWithFormat:
-          @"NSEvent: eventType = UNKNOWN!, point = { %f, %f }, modifiers = %u,"
-          @" time = %f, window = %d",
+          @"NSEvent: eventType = UNKNOWN!, point = { %f, %f }, modifiers = %lu,"
+          @" time = %f, window = %ld",
           location_point.x, location_point.y,
-          modifier_flags, event_time, window_num];
+          (unsigned long)modifier_flags, event_time, (long)window_num];
         break;
     }
 

@@ -595,12 +595,12 @@ GSSetDragTypes(NSView* obj, NSArray *types)
 
   if (frameRect.size.width < 0)
     {
-      NSWarnMLog(@"given negative width", 0);
+      NSWarnMLog(@"%@", @"given negative width");
       frameRect.size.width = 0;
     }
   if (frameRect.size.height < 0)
     {
-      NSWarnMLog(@"given negative height", 0);
+      NSWarnMLog(@"%@", @"given negative height");
       frameRect.size.height = 0;
     }
   _frame = frameRect;			// Set frame rectangle
@@ -1178,12 +1178,12 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
 
   if (frameRect.size.width < 0)
     {
-      NSWarnMLog(@"given negative width", 0);
+      NSWarnMLog(@"%@", @"given negative width");
       frameRect.size.width = 0;
     }
   if (frameRect.size.height < 0)
     {
-      NSWarnMLog(@"given negative height", 0);
+      NSWarnMLog(@"%@", @"given negative height");
       frameRect.size.height = 0;
     }
 
@@ -1259,12 +1259,12 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
   NSRect newFrame = _frame;
   if (newSize.width < 0)
     {
-      NSWarnMLog(@"given negative width", 0);
+      NSWarnMLog(@"%@", @"given negative width");
       newSize.width = 0;
     }
   if (newSize.height < 0)
     {
-      NSWarnMLog(@"given negative height", 0);
+      NSWarnMLog(@"%@", @"given negative height");
       newSize.height = 0;
     }
   if (NSEqualSizes(_frame.size, newSize) == NO)
@@ -1385,12 +1385,12 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
   NSDebugLLog(@"NSView", @"setBounds %@", NSStringFromRect(aRect));
   if (aRect.size.width < 0)
     {
-      NSWarnMLog(@"given negative width", 0);
+      NSWarnMLog(@"%@", @"given negative width");
       aRect.size.width = 0;
     }
   if (aRect.size.height < 0)
     {
-      NSWarnMLog(@"given negative height", 0);
+      NSWarnMLog(@"%@", @"given negative height");
       aRect.size.height = 0;
     }
 
@@ -1479,12 +1479,12 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
 
   if (newSize.width < 0)
     {
-      NSWarnMLog(@"given negative width", 0);
+      NSWarnMLog(@"%@", @"given negative width");
       newSize.width = 0;
     }
   if (newSize.height < 0)
     {
-      NSWarnMLog(@"given negative height", 0);
+      NSWarnMLog(@"%@", @"given negative height");
       newSize.height = 0;
     }
 
@@ -1570,12 +1570,12 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
     {
       if (newSize.width < 0)
         {
-          NSWarnMLog(@"given negative width", 0);
+          NSWarnMLog(@"%@", @"given negative width");
           newSize.width = 0;
         }
       if (newSize.height < 0)
         {
-          NSWarnMLog(@"given negative height", 0);
+          NSWarnMLog(@"%@", @"given negative height");
           newSize.height = 0;
         }
 
@@ -1683,7 +1683,7 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
 
   if (aView != nil)
     {
-      NSAssert(_window == [aView window], NSInvalidArgumentException);      
+      NSAssert1(_window == [aView window], @"%@", NSInvalidArgumentException);      
       inBase = [[aView _matrixToWindow] transformPoint: aPoint];    
     }
   else
@@ -1705,7 +1705,7 @@ static NSSize _computeScale(NSSize fs, NSSize bs)
 
   if (aView != nil)
     {
-      NSAssert(_window == [aView window], NSInvalidArgumentException);      
+      NSAssert1(_window == [aView window], @"%@", NSInvalidArgumentException);      
       return [[aView _matrixFromWindow] transformPoint: inBase];
     }
   else
@@ -1770,7 +1770,7 @@ convert_rect_using_matrices(NSRect aRect, NSAffineTransform *matrix1,
 
   if (aView != nil)
     {
-      NSAssert(_window == [aView window], NSInvalidArgumentException); 
+      NSAssert1(_window == [aView window], @"%@", NSInvalidArgumentException); 
       matrix1 = [aView _matrixToWindow];      
     }
   else
@@ -1804,7 +1804,7 @@ convert_rect_using_matrices(NSRect aRect, NSAffineTransform *matrix1,
 
   if (aView != nil)
     {
-      NSAssert(_window == [aView window], NSInvalidArgumentException);
+      NSAssert1(_window == [aView window], @"%@", NSInvalidArgumentException);
       matrix2 = [aView _matrixFromWindow];
     }
   else
@@ -1822,7 +1822,7 @@ convert_rect_using_matrices(NSRect aRect, NSAffineTransform *matrix1,
 
   if (aView)
     {
-      NSAssert(_window == [aView window], NSInvalidArgumentException);      
+      NSAssert1(_window == [aView window], @"%@", NSInvalidArgumentException);      
       inBase = [[aView _matrixToWindow] transformSize: aSize];
       if (inBase.height < 0.0)
 	{
@@ -1853,7 +1853,7 @@ convert_rect_using_matrices(NSRect aRect, NSAffineTransform *matrix1,
   if (aView)
     {
       NSSize inOther;
-      NSAssert(_window == [aView window], NSInvalidArgumentException);      
+      NSAssert1(_window == [aView window], @"%@", NSInvalidArgumentException);      
       inOther = [[aView _matrixFromWindow] transformSize: inBase];
       if (inOther.height < 0.0)
 	{
@@ -2071,7 +2071,7 @@ static void autoresize(CGFloat oldContainerSize,
 
   if (viewIsPrinting == nil)
     {
-      NSAssert(_window != nil, NSInternalInconsistencyException);
+      NSAssert1(_window != nil, @"%@", NSInternalInconsistencyException);
       /* Check for deferred window */
       if ((window_gstate = [_window gState]) == 0)
         {
@@ -2222,7 +2222,7 @@ static void autoresize(CGFloat oldContainerSize,
 
   if (viewIsPrinting == nil)
     {
-      NSAssert(_window != nil, NSInternalInconsistencyException);
+      NSAssert1(_window != nil, @"%@", NSInternalInconsistencyException);
       /* Check for deferred window */
       if ([_window gState] == 0)
         return;
@@ -4679,12 +4679,12 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
       e = [subs objectEnumerator];
       while ((sub = [e nextObject]) != nil)
 	{
-	  NSAssert([sub class] != [NSCustomView class],
-		   NSInternalInconsistencyException);
-	  NSAssert([sub window] == nil,
-		   NSInternalInconsistencyException);
-          NSAssert([sub superview] == nil,
-                   NSInternalInconsistencyException);
+	  NSAssert1([sub class] != [NSCustomView class],
+		   @"%@", NSInternalInconsistencyException);
+	  NSAssert1([sub window] == nil,
+		   @"%@", NSInternalInconsistencyException);
+          NSAssert1([sub superview] == nil,
+                   @"%@", NSInternalInconsistencyException);
 	  [sub _viewWillMoveToWindow: _window];
 	  [sub _viewWillMoveToSuperview: self];
 	  [sub setNextResponder: self];
@@ -4742,10 +4742,10 @@ static NSView* findByTag(NSView *view, NSInteger aTag, NSUInteger *level)
       e = [subs objectEnumerator];
       while ((sub = [e nextObject]) != nil)
 	{
-	  NSAssert([sub window] == nil,
-	    NSInternalInconsistencyException);
-	  NSAssert([sub superview] == nil,
-	    NSInternalInconsistencyException);
+	  NSAssert1([sub window] == nil,
+	    @"%@", NSInternalInconsistencyException);
+	  NSAssert1([sub superview] == nil,
+	    @"%@", NSInternalInconsistencyException);
 	  [sub _viewWillMoveToWindow: _window];
 	  [sub _viewWillMoveToSuperview: self];
 	  [sub setNextResponder: self];

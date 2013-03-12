@@ -170,7 +170,7 @@ static NSNotificationCenter *nc = nil;
     {
       if (delta < 0)
 	{
-	  NSAssert (old.length >= (unsigned)-delta, NSInvalidArgumentException);
+	  NSAssert1 (old.length >= (unsigned)-delta, @"%@", NSInvalidArgumentException);
 	}
       _editedRange.length += delta; 
       _editedDelta += delta;
