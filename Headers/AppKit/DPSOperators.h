@@ -709,7 +709,7 @@ static inline void
 GSShowGlyphsWithAdvances(GSCTXT *ctxt, const NSGlyph * glyphs, const NSSize * advances, size_t length)
 {
   (ctxt->methods->GSShowGlyphsWithAdvances__)
-    (ctxt, @selector(GSShowGlyphsWithAdvances: :), glyphs, advances, length); 
+    (ctxt, @selector(GSShowGlyphsWithAdvances:::), glyphs, advances, length); 
 }
 
 
